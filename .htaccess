@@ -1,0 +1,10 @@
+RewriteEngine On
+RewriteBase /cryptomatrix
+
+RewriteCond %{THE_REQUEST} /Public/([^\s?]*) [NC]
+RewriteRule ^ %1 [L,NE,R=302]
+
+RewriteRule ^((?!Public/).*)$ Public/$1 [L,NC]
+
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
